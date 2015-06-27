@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ htmllang() }}"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ htmllang() }}"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ htmllang() }}"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="{{ htmllang() }}"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if record.title is defined %}
+        {% set title = record.title|striptags ~ ' | ' ~ app.config.get('general/sitename') %}
+    {% else %}
+        {% set title = app.config.get('general/sitename') %}
+    {% endif %}
+
+    {% if record.teaser != "" %}
+        {% set description = record.teaser %}
+    {% else %}
+        {% set description = theme.description %}
+    {% endif %}
+
+    {% if record.image is defined %}
+        {% set image = paths.hosturl ~ paths.files ~ record.image %}
+    {% else %}
+        {% set image = paths.hosturl ~ paths.theme ~ 'img/' ~ theme.image %}
+    {% endif %}
+
+    <title>{{ title }} | {{ app.config.get('general/sitename') }}</title>
+    <meta name="description" content="{{ description }}" />
+
+    <link rel="apple-touch-icon" href="{{ paths.theme}}img/apple-touch-icon.png">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="description" content="{{ description }}">
+    <meta itemprop="image" content="{{ image }}">
+    <meta itemprop="name" content="{{ title }}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+
+    {% if theme.twitter_id is defined %}
+    <meta name="twitter:creator" content="{{ theme.twitter_id }}">
+    <meta name="twitter:site" content="{{ theme.twitter_id }}">
+    {% endif %}
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image" content="{{ image }}">
+
+    <!-- Open Graph data -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:url" content="{{ paths.canonicalurl }}" />
+    <meta property="og:image" content="{{ image }}" />
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:site_name" content="{{ app.config.get('general/sitename') }}" />
+
+    <link rel="stylesheet" href="{{ paths.theme }}css/app.css">
+
+    <script src="{{ paths.theme }}js/vendor/modernizr-2.8.3.min.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                {{ menu('main', '_sub_menu.twig') }}
+            </ul>
+        </nav>
+
+        <a href="{{ paths.root }}">{{ app.config.get('general/sitename') }}</a>
+    </header>
