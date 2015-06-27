@@ -5,7 +5,7 @@ A bare-bones theme for Bolt CMS, focussing on SEO-friendly and semantic code. Th
 
 To install this theme, `theme/` and clone the repository: 
 
-  git clone https://github.com/andyjessop/bolt-starter-theme.git starter
+    git clone https://github.com/andyjessop/bolt-starter-theme.git starter
 
 Set `theme: starter` in your `app/config/config.yml`, and you're good to go!
 
