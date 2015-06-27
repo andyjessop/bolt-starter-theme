@@ -1,13 +1,13 @@
 {% include '_header.twig' %}
 
 <!-- Main Page Content and Sidebar -->
-<article>
+<article itemscope itemtype="http://schema.org/Article">
 
-    <h1>{{ record.title }}</h1>
+    <h1 itemprop="headline">{{ record.title }}</h1>
 
-    {% if record.image!="" %}
+    {% if record.image != "" %}
         <a href="{{ image(record.image) }}">
-            <img src="{{ thumbnail(record.image, 400, 260) }}">
+            <img src="{{ thumbnail(record.image, 400, 260) }}" itemprop="image">
         </a>
     {% endif %}
 
@@ -25,7 +25,9 @@
         {{ record.video.responsive }}
     {% endif %}
 
-    {{ record.body }}
+    <div itemprop="articleBody">
+        {{ record.body }}
+    </div>
 
     {% include '_recordfooter.twig' with {record: record} %}
 

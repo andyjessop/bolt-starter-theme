@@ -34,23 +34,23 @@
 
 
     {% for record in records %}
-        <article>
+        <article itemscope itemtype="http://schema.org/Article">
 
-            <h2><a href="{{ record.link }}">{{ record.title }}</a></h2>
+            <h2 itemprop="headline"><a href="{{ record.link }}" itemprop="url">{{ record.title }}</a></h2>
 
             {% if record.image!="" %}
                 <a href="{{ image(record.image) }}">
-                    <img src="{{ thumbnail(record.image, 400, 260) }}">
+                    <img src="{{ thumbnail(record.image, 400, 260) }} itemprop="image">
                 </a>
             {% endif %}
 
             {# display something introduction-like.. #}
             {% if record.introduction %}
-                {{ record.introduction }}
+                <span itemprop="description">{{ record.introduction }}</span>
             {% elseif record.teaser %}
-                {{ record.teaser }}
+                <span itemprop="description">{{ record.teaser }}</span>
             {% else %}
-                <p>{{ record.excerpt(300) }}</p>
+                <p itemprop="description">{{ record.excerpt(300) }}</p>
             {% endif %}
 
             {% include '_recordfooter.twig' with {record: record} %}
