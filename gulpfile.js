@@ -18,6 +18,4 @@ gulp.task('styles', function() {
         .pipe(gulp.dest(paths.cssDir));
 })
 
-gulp.task('default', function() {
-    gulp.run('scripts', 'styles');
-})
+gulp.task('default', ['scripts', 'images']);
